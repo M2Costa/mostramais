@@ -2,9 +2,10 @@ import Image from 'next/image';
 
 interface HeroProps {
   onCta: () => void;
+  onSchedule: () => void;
 }
 
-export default function Hero({ onCta }: HeroProps) {
+export default function Hero({ onCta, onSchedule }: HeroProps) {
   return (
     <section className="mm-hero">
       <div className="mm-hero-stack" style={{ height: '504px' }}>
@@ -24,7 +25,7 @@ export default function Hero({ onCta }: HeroProps) {
           <h2 className="mm-hero-sub">Uma ponte entre o universo acadêmico e o mercado.</h2>
           <div className="mm-hero-cta">
             <button className="mm-btn mm-btn--pink" onClick={onCta}>Ver projetos</button>
-            <button className="mm-btn mm-btn--ghost" onClick={onCta}>Programação →</button>
+            <button className="mm-btn mm-btn--ghost" onClick={onSchedule}>Programação →</button>
           </div>
         </div>
         <div className="mm-hero-dates">

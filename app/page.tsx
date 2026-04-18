@@ -58,7 +58,7 @@ export default function Home() {
 
       {route === 'sobre' && (
         <main className="mm-main">
-          <Hero onCta={() => onNav('projetos')} />
+          <Hero onCta={() => onNav('projetos')} onSchedule={() => onNav('cronograma')} />
           <Ticker color="orange" items={['02ª EDIÇÃO', '28 MAI— 31 MAI', 'ESCOLA DE DESIGN', '42 PROJETOS', 'INSCRIÇÕES FINALIZADAS']} />
           <About />
           <Manifesto />
