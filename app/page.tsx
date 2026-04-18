@@ -6,7 +6,7 @@ import Ticker from './components/Ticker';
 import Hero from './components/Hero';
 import Manifesto from './components/Manifesto';
 import About from './components/About';
-import { EditionsList, EditionProjetoPagina } from './components/Editions';
+import { EditionsPage, EditionDetail } from './components/editions';
 import Faq from './components/Faq';
 import Schedule from './components/Schedule';
 import Contact from './components/Contact';
@@ -56,10 +56,10 @@ export default function Home() {
       {route === 'edicoes' && (
         <main className="mm-main">
           {selectedProject ? (
-            <EditionProjetoPagina id={selectedProject} onBack={closeProject} onOpen={openProject} />
+            <EditionDetail id={selectedProject} onBack={closeProject} onOpen={openProject} />
           ) : (
             <>
-              <EditionsList onOpen={openProject} />
+              <EditionsPage onOpen={openProject} />
               <Ticker color="pink" items={['ACERVO ABERTO', '06 EDIÇÕES', '240+ PROJETOS', 'GRÁFICO · PRODUTO · MODA · DIGITAL']} />
             </>
           )}
