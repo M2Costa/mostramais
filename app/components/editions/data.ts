@@ -9,15 +9,13 @@ export interface EditionProject {
   year: string;
   title: string;
   author: string;
-  cat: string;
+  area: string;
   tag: string;
   accent: string;
   bg: string;
   short: string;
   desc: string;
-  role?: string;
   advisor?: string;
-  tools?: string;
   coverImg?: string;
   media: EditionMedia[];
 }
@@ -40,15 +38,13 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2026',
     title: 'Mapa dos Coletivos',
     author: 'Tiago Ramos',
-    cat: 'DIGITAL',
+    area: 'DIGITAL',
     tag: 'PLATAFORMA WEB',
     accent: '#ed3e8c',
     bg: '#3056a6',
     short: 'Plataforma para conectar coletivos de design independente do Sul do Brasil.',
     desc: 'O Mapa dos Coletivos é uma plataforma web colaborativa que cataloga e conecta mais de 120 coletivos de design atuantes na região Sul. A interface combina um mapa interativo, filtros por área de atuação e fichas detalhadas de cada coletivo — com links para portfólios, convocatórias abertas e contatos diretos. O projeto nasceu de uma série de entrevistas conduzidas ao longo de 2025 e se propõe a ser um acervo vivo, mantido pela própria comunidade.',
-    role: 'Pesquisa · Design de interface · Desenvolvimento',
     advisor: 'Prof. Carla Montano',
-    tools: 'Figma · Next.js · Mapbox · Airtable',
     coverImg: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?w=1200&q=80',
     media: [
       { kind: 'image', src: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?w=1200&q=80', caption: 'Home — mapa interativo com recorte regional' },
@@ -62,15 +58,13 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2026',
     title: 'Terminal da Escola',
     author: 'Léo Fernandes',
-    cat: 'DIGITAL',
+    area: 'DIGITAL',
     tag: 'FERRAMENTA INTERNA',
     accent: '#f9a52b',
     bg: '#E72818',
     short: 'Visualizador do acervo de TCCs da Escola de Design, em linha de comando.',
     desc: 'Terminal da Escola é uma ferramenta CLI + web que permite navegar pelo acervo de trabalhos de conclusão da Escola de Design sem depender de buscas genéricas. O recorte é curatorial: só TCCs aprovados, indexados por orientador, ano, tema e materiais. A versão web reproduz a experiência do terminal com atalhos de teclado e sessões persistentes.',
-    role: 'Curadoria · Interface · Engenharia',
     advisor: 'Prof. Henrique Serra',
-    tools: 'Svelte · xterm.js · PostgreSQL · Tailwind',
     coverImg: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80',
     media: [
       { kind: 'image', src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80', caption: 'Visão do terminal — listagem por orientador' },
@@ -84,15 +78,13 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2026',
     title: 'Ensaio Tipográfico',
     author: 'Helena Prado',
-    cat: 'DIGITAL',
+    area: 'DIGITAL',
     tag: 'SITE EXPERIMENTAL',
     accent: '#3056a6',
     bg: '#f9a52b',
     short: 'Site experimental que lê textos acadêmicos e os compõe como objeto tipográfico.',
     desc: 'Um editor/leitor que recebe um artigo acadêmico e o recompõe em uma tipografia reativa: o tamanho de cada parágrafo responde à densidade semântica, as quebras de linha seguem a respiração do orador. O projeto é um ensaio sobre como a tela pode se comportar como uma página editorial, sem imitá-la.',
-    role: 'Pesquisa tipográfica · Interface · Motion',
     advisor: 'Prof. Ana Beatriz Lins',
-    tools: 'Variable fonts · p5.js · React',
     coverImg: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80',
     media: [
       { kind: 'image', src: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80', caption: 'Home — composição reativa por densidade' },
@@ -105,15 +97,13 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2026',
     title: 'Acervo em Som',
     author: 'Marcos Vieira',
-    cat: 'DIGITAL',
+    area: 'DIGITAL',
     tag: 'APP MÓVEL',
     accent: '#ed3e8c',
     bg: '#2D155B',
     short: 'App que narra em áudio peças do acervo permanente da Escola.',
     desc: 'Acervo em Som é um aplicativo móvel que combina áudio-descrições curtas, entrevistas e paisagens sonoras para apresentar peças do acervo permanente da Escola de Design. O objetivo é permitir que visitantes e alunos explorem o acervo mesmo à distância — e que trabalhos menos conhecidos ganhem uma nova camada de leitura.',
-    role: 'Produto · Roteiro · Som',
     advisor: 'Prof. Daniela Rocha',
-    tools: 'Swift · Firebase · Audition',
     coverImg: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&q=80',
     media: [
       { kind: 'image', src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&q=80', caption: 'Tela de reprodução — ficha sonora' },
@@ -126,15 +116,13 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2026',
     title: 'Retina',
     author: 'Juliana Alves & Rafael Lima',
-    cat: 'DIGITAL',
+    area: 'DIGITAL',
     tag: 'INSTALAÇÃO GENERATIVA',
     accent: '#f9a52b',
     bg: '#000',
     short: 'Instalação generativa que traduz o ritmo da sala em composições visuais.',
     desc: 'Retina é uma instalação digital instalada no saguão da Escola durante a MOSTRA+ 02. Câmeras e sensores capturam movimento e luminosidade no espaço e traduzem esses dados, em tempo real, numa composição tipográfica projetada em três superfícies. A cada visitante a peça se reconfigura — convidando a permanência, não o clique.',
-    role: 'Design generativo · Instalação · Som',
     advisor: 'Prof. Bruno Ferraz',
-    tools: 'TouchDesigner · OpenCV · Ableton Live',
     coverImg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80',
     media: [
       { kind: 'video', src: 'https://cdn.pixabay.com/video/2020/04/30/38683-415083026_large.mp4', poster: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80', caption: 'Captura da instalação no saguão' },
@@ -148,15 +136,13 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2026',
     title: 'Arquivo Aberto',
     author: 'Beatriz Nogueira',
-    cat: 'DIGITAL',
+    area: 'DIGITAL',
     tag: 'PUBLICAÇÃO DIGITAL',
     accent: '#3056a6',
     bg: '#ed3e8c',
     short: 'Publicação digital com os bastidores da curadoria da 02ª edição.',
     desc: 'Arquivo Aberto é uma publicação digital em formato scrollytelling que documenta o processo curatorial da MOSTRA+ 02: critérios de seleção, dúvidas, discussões e a lista final. A proposta é tornar transparente um processo que costuma ser invisível — e servir de referência para as próximas edições.',
-    role: 'Design editorial · Redação · Engenharia',
     advisor: 'Prof. Carla Montano',
-    tools: 'Astro · Scrollama · Figma',
     coverImg: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80',
     media: [
       { kind: 'image', src: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80', caption: 'Capa da publicação' },
@@ -172,7 +158,7 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2025',
     title: 'Atlas de Feiras Populares',
     author: 'Clara Siqueira',
-    cat: 'GRÁFICO',
+    area: 'GRÁFICO',
     tag: 'PUBLICAÇÃO',
     accent: '#ed3e8c',
     bg: '#f9a52b',
@@ -191,7 +177,7 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2025',
     title: 'Luminária Samambaia',
     author: 'Diego Machado',
-    cat: 'PRODUTO',
+    area: 'PRODUTO',
     tag: 'OBJETO',
     accent: '#f9a52b',
     bg: '#3056a6',
@@ -212,7 +198,7 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2024',
     title: 'Tipo Curral',
     author: 'Nina Barreto',
-    cat: 'GRÁFICO',
+    area: 'GRÁFICO',
     tag: 'TIPOGRAFIA',
     accent: '#ed3e8c',
     bg: '#2D155B',
@@ -230,7 +216,7 @@ export const ALL_PROJECTS: EditionProject[] = [
     year: '2024',
     title: 'Vestir o Caminho',
     author: 'Helena Farias',
-    cat: 'MODA',
+    area: 'MODA',
     tag: 'COLEÇÃO',
     accent: '#ed3e8c',
     bg: '#E72818',

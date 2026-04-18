@@ -1,6 +1,6 @@
 'use client';
 
-import { ALL_PROJECTS } from './data';
+import type { EditionProject } from './data';
 
 function ColorCover({ title, accent, bg, style }: { title: string; accent: string; bg: string; style?: React.CSSProperties }) {
   const word = title.split(' ')[0].toUpperCase();
@@ -12,9 +12,32 @@ function ColorCover({ title, accent, bg, style }: { title: string; accent: strin
   );
 }
 
-export default function EditionDetail({ id, onBack, onOpen }: { id: string; onBack: () => void; onOpen: (id: string) => void }) {
-  const idx = ALL_PROJECTS.findIndex(p => p.id === id);
-  const p = ALL_PROJECTS[idx];
+function isDriveEmbed(src: string): boolean {
+  return src.includes('drive.google.com/file/d/') && src.endsWith('/preview');
+}
+
+function VideoMedia({ src, poster, caption }: { src: string; poster?: string; caption: string }) {
+  if (isDriveEmbed(src)) {
+    return (
+      <iframe
+        src={src}
+        allow="autoplay"
+        style={{ width: '100%', aspectRatio: '16/9', border: 'none', display: 'block' }}
+        title={caption}
+      />
+    );
+  }
+  return <video src={src} poster={poster} controls playsInline />;
+}
+
+export default function EditionDetail({ id, onBack, onOpen, projects }: {
+  id: string;
+  onBack: () => void;
+  onOpen: (id: string) => void;
+  projects: EditionProject[];
+}) {
+  const idx = projects.findIndex(p => p.id === id);
+  const p = projects[idx];
 
   if (!p) {
     return (
@@ -27,7 +50,7 @@ export default function EditionDetail({ id, onBack, onOpen }: { id: string; onBa
     );
   }
 
-  const editionProjects = ALL_PROJECTS.filter(ep => ep.edition === p.edition);
+  const editionProjects = projects.filter(ep => ep.edition === p.edition);
   const edIdx = editionProjects.findIndex(ep => ep.id === id);
   const prev = editionProjects[(edIdx - 1 + editionProjects.length) % editionProjects.length];
   const next = editionProjects[(edIdx + 1) % editionProjects.length];
@@ -40,7 +63,7 @@ export default function EditionDetail({ id, onBack, onOpen }: { id: string; onBa
         <span className="mm-crumb-sep">·</span>
         <span className="mm-crumb-now">ED. {p.edition} · {p.year}</span>
         <span className="mm-crumb-sep">·</span>
-        <span className="mm-crumb-cat" style={{ color: p.accent }}>+ {p.cat}</span>
+        <span className="mm-crumb-cat" style={{ color: p.accent }}>+ {p.area}</span>
       </div>
 
       <header className="mm-projeto-hero">
@@ -52,17 +75,15 @@ export default function EditionDetail({ id, onBack, onOpen }: { id: string; onBa
             <div><dt>Autoria</dt><dd>{p.author}</dd></div>
             <div><dt>Ano</dt><dd>{p.year}</dd></div>
             <div><dt>Edição</dt><dd>{p.edition}ª MOSTRA+</dd></div>
-            <div><dt>Área</dt><dd>{p.cat}</dd></div>
+            <div><dt>Área</dt><dd>{p.area}</dd></div>
             {p.advisor && <div><dt>Orientação</dt><dd>{p.advisor}</dd></div>}
-            {p.role && <div><dt>Papéis</dt><dd>{p.role}</dd></div>}
-            {p.tools && <div className="w"><dt>Tecnologias</dt><dd>{p.tools}</dd></div>}
           </dl>
         </div>
         <figure className="mm-projeto-hero-media" style={!p.coverImg ? { background: p.bg, minHeight: 360 } : undefined}>
           {hero.kind === 'block' ? (
             <ColorCover title={p.title} accent={p.accent} bg={p.bg} style={{ position: 'relative', aspectRatio: '16/10' }} />
           ) : hero.kind === 'video' ? (
-            <video src={hero.src} poster={hero.poster} controls playsInline />
+            <VideoMedia src={hero.src} poster={hero.poster} caption={hero.caption} />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={hero.src} alt={hero.caption} />
@@ -89,7 +110,7 @@ export default function EditionDetail({ id, onBack, onOpen }: { id: string; onBa
                       <span style={{ fontFamily: 'var(--font-body-wide)', fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase' }}>{m.label}</span>
                     </div>
                   ) : m.kind === 'video' ? (
-                    <video src={m.src} poster={m.poster} controls playsInline />
+                    <VideoMedia src={m.src} poster={m.poster} caption={m.caption} />
                   ) : (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={m.src} alt={m.caption} />

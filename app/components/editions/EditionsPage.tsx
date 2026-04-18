@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ALL_PROJECTS, EDITIONS, DEFAULT_EDITION, type EditionProject } from './data';
+import { EDITIONS, DEFAULT_EDITION, type EditionProject } from './data';
 
 function ColorCover({ title, accent, bg, style }: { title: string; accent: string; bg: string; style?: React.CSSProperties }) {
   const word = title.split(' ')[0].toUpperCase();
@@ -31,7 +31,7 @@ function EditionGridCard({ p, i, onOpen }: { p: EditionProject; i: number; onOpe
         <div className="mm-pjcard-num">0{i + 1}</div>
       </div>
       <div className="mm-pjcard-body">
-        <div className="mm-pjcard-cat" style={{ color: p.accent }}>+ {p.cat}</div>
+        <div className="mm-pjcard-cat" style={{ color: p.accent }}>+ {p.area}</div>
         <h3 className="mm-pjcard-title">{p.title}</h3>
         <div className="mm-pjcard-meta">
           <span>{p.author}</span>
@@ -66,7 +66,7 @@ function EditionListCard({ p, onOpen }: { p: EditionProject; onOpen: (id: string
         </div>
         <div className="mm-past-info">
           <div className="mm-past-ed">Edição {p.edition} · {p.year}</div>
-          <div className="mm-past-cat" style={{ color: p.accent }}>+ {p.cat} · {p.tag}</div>
+          <div className="mm-past-cat" style={{ color: p.accent }}>+ {p.area} · {p.tag}</div>
           <h4 className="mm-past-title">{p.title}</h4>
           <div className="mm-past-author">{p.author}</div>
         </div>
@@ -76,11 +76,11 @@ function EditionListCard({ p, onOpen }: { p: EditionProject; onOpen: (id: string
   );
 }
 
-export default function EditionsPage({ onOpen }: { onOpen: (id: string) => void }) {
+export default function EditionsPage({ onOpen, projects }: { onOpen: (id: string) => void; projects: EditionProject[] }) {
   const [ed, setEd] = useState(DEFAULT_EDITION);
   const [view, setView] = useState<'grid' | 'list'>('grid');
 
-  const filtered = ALL_PROJECTS.filter(p => p.edition === ed);
+  const filtered = projects.filter(p => p.edition === ed);
   const edMeta = EDITIONS.find(e => e.id === ed);
 
   return (

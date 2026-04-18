@@ -1,0 +1,144 @@
+import { NextResponse } from 'next/server';
+import { ALL_PROJECTS, EDITIONS } from '@/app/components/editions/data';
+import type { EditionProject, EditionMedia } from '@/app/components/editions/data';
+
+const AREA_COLORS: Record<string, { accent: string; bg: string }> = {
+  'gráfico':   { accent: '#ed3e8c', bg: '#f9a52b' },
+  'produto':   { accent: '#f9a52b', bg: '#3056a6' },
+  'moda':      { accent: '#ed3e8c', bg: '#E72818' },
+  'ambientes': { accent: '#3056a6', bg: '#2D155B' },
+  'digital':   { accent: '#ed3e8c', bg: '#3056a6' },
+};
+const DEFAULT_COLORS = { accent: '#ed3e8c', bg: '#111' };
+
+function driveFileId(url: string): string | null {
+  const fileMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (fileMatch) return fileMatch[1];
+  const idMatch = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (idMatch) return idMatch[1];
+  return null;
+}
+
+function driveImageUrl(raw: string): string {
+  const id = driveFileId(raw);
+  return id ? `https://drive.google.com/uc?export=view&id=${id}` : raw;
+}
+
+function driveVideoEmbedUrl(raw: string): string {
+  const id = driveFileId(raw);
+  return id ? `https://drive.google.com/file/d/${id}/preview` : raw;
+}
+
+function isDrive(url: string): boolean {
+  return url.includes('drive.google.com');
+}
+
+function normalizeImageUrl(raw: string): string {
+  return isDrive(raw) ? driveImageUrl(raw) : raw;
+}
+
+function normalizeVideoUrl(raw: string): string {
+  return isDrive(raw) ? driveVideoEmbedUrl(raw) : raw;
+}
+
+function parseMedia(row: string[]): EditionMedia[] {
+  const media: EditionMedia[] = [];
+  const MEDIA_START = 11; // column L (0-indexed)
+  const SLOT_WIDTH = 4;
+  const MAX_SLOTS = 8;
+
+  for (let i = 0; i < MAX_SLOTS; i++) {
+    const base = MEDIA_START + i * SLOT_WIDTH;
+    const kind = (row[base] ?? '').trim().toLowerCase();
+    if (!kind) break;
+
+    const src     = (row[base + 1] ?? '').trim();
+    const extra   = (row[base + 2] ?? '').trim();
+    const caption = (row[base + 3] ?? '').trim();
+
+    if (kind === 'image') {
+      media.push({ kind: 'image', src: normalizeImageUrl(src), caption });
+    } else if (kind === 'video') {
+      const entry: EditionMedia = { kind: 'video', src: normalizeVideoUrl(src), caption };
+      if (extra) (entry as { kind: 'video'; src: string; poster?: string; caption: string }).poster = normalizeImageUrl(extra);
+      media.push(entry);
+    } else if (kind === 'block') {
+      media.push({ kind: 'block', label: caption, color: extra || '#000' });
+    }
+  }
+
+  return media;
+}
+
+function rowToProject(row: string[]): EditionProject | null {
+  const id = (row[0] ?? '').trim();
+  if (!id) return null;
+
+  const area   = (row[5] ?? '').trim();
+  const colors = AREA_COLORS[area.toLowerCase()] ?? DEFAULT_COLORS;
+  const coverRaw = (row[10] ?? '').trim();
+  const media  = parseMedia(row);
+
+  if (media.length === 0) return null;
+
+  return {
+    id,
+    edition:  (row[1] ?? '').trim(),
+    year:     (row[2] ?? '').trim(),
+    title:    (row[3] ?? '').trim(),
+    author:   (row[4] ?? '').trim(),
+    area,
+    tag:      (row[6] ?? '').trim(),
+    accent:   colors.accent,
+    bg:       colors.bg,
+    short:    (row[7] ?? '').trim(),
+    desc:     (row[8] ?? '').trim(),
+    advisor:  (row[9] ?? '').trim() || undefined,
+    coverImg: coverRaw ? normalizeImageUrl(coverRaw) : undefined,
+    media,
+  };
+}
+
+export async function GET() {
+  const sheetId = process.env.GOOGLE_SHEETS_ID;
+  const apiKey  = process.env.GOOGLE_API_KEY;
+
+  if (!sheetId || !apiKey) {
+    console.warn('[/api/projects] Missing GOOGLE_SHEETS_ID or GOOGLE_API_KEY — using static fallback');
+    return NextResponse.json(
+      { projects: ALL_PROJECTS, editions: EDITIONS, fallback: true },
+      { headers: { 'Cache-Control': 'no-store', 'X-Data-Source': 'static-fallback' } }
+    );
+  }
+
+  try {
+    const range = encodeURIComponent('projects!A1:AN');
+    const url   = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+    const res = await fetch(url, { next: { revalidate: 300 } });
+
+    if (!res.ok) {
+      throw new Error(`Sheets API ${res.status}: ${res.statusText}`);
+    }
+
+    const data = await res.json() as { values?: string[][] };
+    const rows = data.values ?? [];
+
+    // rows[0] is the header row — skip it
+    const projects: EditionProject[] = rows
+      .slice(1)
+      .map(rowToProject)
+      .filter((p): p is EditionProject => p !== null);
+
+    return NextResponse.json(
+      { projects, editions: EDITIONS },
+      { headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600' } }
+    );
+  } catch (err) {
+    console.error('[/api/projects] fetch failed, falling back to static data:', err);
+    return NextResponse.json(
+      { projects: ALL_PROJECTS, editions: EDITIONS, fallback: true },
+      { headers: { 'Cache-Control': 'no-store', 'X-Data-Source': 'static-fallback' } }
+    );
+  }
+}

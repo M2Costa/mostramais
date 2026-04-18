@@ -7,6 +7,8 @@ import Hero from './components/Hero';
 import Manifesto from './components/Manifesto';
 import About from './components/About';
 import { EditionsPage, EditionDetail } from './components/editions';
+import { ALL_PROJECTS } from './components/editions/data';
+import type { EditionProject } from './components/editions/data';
 import Faq from './components/Faq';
 import Schedule from './components/Schedule';
 import Contact from './components/Contact';
@@ -16,6 +18,16 @@ import Footer from './components/Footer';
 type Route = 'sobre' | 'edicoes' | 'cronograma' | 'faq' | 'contato' | 'mais';
 
 export default function Home() {
+  const [projects, setProjects] = useState<EditionProject[] | null>(null);
+  const effectiveProjects = projects ?? ALL_PROJECTS;
+
+  useEffect(() => {
+    fetch('/api/projects')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then((d: { projects: EditionProject[] }) => setProjects(d.projects))
+      .catch(() => {});
+  }, []);
+
   const [route, setRoute] = useState<Route>(() => {
     if (typeof window === 'undefined') return 'sobre';
     return (localStorage.getItem('mm-route') as Route) || 'sobre';
@@ -56,10 +68,10 @@ export default function Home() {
       {route === 'edicoes' && (
         <main className="mm-main">
           {selectedProject ? (
-            <EditionDetail id={selectedProject} onBack={closeProject} onOpen={openProject} />
+            <EditionDetail id={selectedProject} projects={effectiveProjects} onBack={closeProject} onOpen={openProject} />
           ) : (
             <>
-              <EditionsPage onOpen={openProject} />
+              <EditionsPage projects={effectiveProjects} onOpen={openProject} />
               <Ticker color="pink" items={['ACERVO ABERTO', '06 EDIÇÕES', '240+ PROJETOS', 'GRÁFICO · PRODUTO · MODA · DIGITAL']} />
             </>
           )}
