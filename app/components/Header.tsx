@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-type Route = 'sobre' | 'anteriores' | 'projetos' | 'cronograma' | 'faq' | 'contato' | 'mais';
+type Route = 'sobre' | 'edicoes' | 'cronograma' | 'faq' | 'contato' | 'mais';
 
 interface HeaderProps {
   active: Route;
@@ -11,8 +11,7 @@ interface HeaderProps {
 }
 
 const NAV_ITEMS: [Route, string][] = [
-  ['anteriores', 'Edições Anteriores'],
-  ['projetos',   'Projetos'],
+  ['edicoes',    'Edições'],
   ['cronograma', 'Cronograma'],
   ['faq',        'FAQ'],
   ['contato',    'Contato'],
