@@ -34,10 +34,6 @@ export default function About() {
               <div className="mm-eyebrow mm-eyebrow--pink">+ Público</div>
               <p>{ABOUT_CONTENT.audience}</p>
             </div>
-            <div>
-              <div className="mm-eyebrow mm-eyebrow--pink">+ Valor</div>
-              <p>{ABOUT_CONTENT.value}</p>
-            </div>
           </div>
         </div>
       </section>
