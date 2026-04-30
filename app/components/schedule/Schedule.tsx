@@ -1,4 +1,4 @@
-import { SCHEDULE } from './data';
+import { SCHEDULE, SCHEDULE_META } from './data';
 
 export default function Schedule() {
   return (
@@ -6,7 +6,7 @@ export default function Schedule() {
       <header className="mm-section-head">
         <div className="mm-eyebrow">+ Cronograma</div>
         <h2 className="mm-section-title">Edital 02ª edição.</h2>
-        <p className="mm-section-lead">Oito fases, de janeiro a outubro de 2026. Salve as datas — elas não se mexem.</p>
+        <p className="mm-section-lead">{SCHEDULE_META.lead}</p>
       </header>
       <ol className="mm-timeline">
         {SCHEDULE.map((s, i) => (
