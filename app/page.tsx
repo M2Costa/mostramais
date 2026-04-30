@@ -27,14 +27,15 @@ export default function Home() {
       .catch(() => {});
   }, []);
 
-  const [route, setRoute] = useState<Route>(() => {
-    if (typeof window === 'undefined') return 'sobre';
-    return (localStorage.getItem('mm-route') as Route) || 'sobre';
-  });
-  const [selectedProject, setSelectedProject] = useState<string | null>(() => {
-    if (typeof window === 'undefined') return null;
-    return localStorage.getItem('mm-project');
-  });
+  const [route, setRoute] = useState<Route>('sobre');
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+
+  useEffect(() => {
+    const savedRoute = localStorage.getItem('mm-route') as Route;
+    const savedProject = localStorage.getItem('mm-project');
+    if (savedRoute) setRoute(savedRoute);
+    if (savedProject) setSelectedProject(savedProject);
+  }, []);
 
   useEffect(() => { localStorage.setItem('mm-route', route); }, [route]);
   useEffect(() => {
