@@ -45,7 +45,7 @@ export default function Contact() {
           <ul className="mm-link-list">
             {LINKS.map(l => (
               <li key={l.label}>
-                <a className="mm-link-row" href={l.href}>
+                <a className="mm-link-row" href={l.href} target="_blank" rel="noopener noreferrer">
                   <span className="mm-link-val">{l.label}</span>
                   <span className="mm-link-lbl">{l.meta}</span>
                   <span className="mm-link-arrow" aria-hidden>↓</span>

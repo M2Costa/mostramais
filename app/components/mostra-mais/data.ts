@@ -1,15 +1,11 @@
-export type GalleryKind = 'image' | 'video' | 'gif';
-export type GallerySpan = 'big' | 'tall' | 'std';
+export const MOSTRA_MAIS_CONTENT = {
+  lead: 'A MOSTRA+ surgiu para os alunos mostrarem para a comunidade acadêmica e para a sociedade seus projetos desenvolvidos na Escola de Design. Alguns projetos são interativos e podem ser aprofundados, para além da exposição. A MOSTRA+ UM POUCO veio para isso: uma oportunidade dos alunos mostrarem ainda mais seus trabalhos.',
+  galleryLead: 'Foto, vídeo, GIF — um recorte do que aconteceu nas últimas edições.',
+};
 
-export interface GalleryItem {
-  kind: GalleryKind;
-  title: string;
-  sub: string;
-  color: string;
-  span?: GallerySpan;
-}
+export const INTEREST_FORM_HREF = 'https://forms.gle/9PyUCgG7QJYm1Brt8';
 
-export const GALLERY: GalleryItem[] = [
+export const GALLERY = [
   { kind: 'image', title: 'Vernissage ed. 02',      sub: 'Galeria Principal · 2026', color: 'var(--mm-pink)',   span: 'big' },
   { kind: 'video', title: 'Making-of montagem',     sub: '4:12 · 2025',              color: '#111' },
   { kind: 'image', title: 'Portfolio Night',        sub: 'Foyer · 2025',             color: 'var(--mm-blue)' },
@@ -19,26 +15,4 @@ export const GALLERY: GalleryItem[] = [
   { kind: 'image', title: 'Prêmio MOSTRA+',         sub: 'Encerramento · 2025',      color: 'var(--mm-pink)' },
   { kind: 'image', title: 'Acervo físico',          sub: 'Sala de arquivo · 2025',   color: 'var(--mm-blue)' },
   { kind: 'video', title: 'Entrevista curatorial',  sub: '6:30 · 2025',              color: '#111' },
-];
-
-export const TOPICS = [
-  'Abertura',
-  'Workshops',
-  'Portfolio Night',
-  'Visitas guiadas',
-  'Livro da edição',
-  'Curadoria aberta',
-];
-
-export const ROLES: [string, string][] = [
-  ['aluno',     'Aluno(a)'],
-  ['ex-aluno',  'Ex-aluno(a)'],
-  ['externo',   'Público externo'],
-  ['estudio',   'Estúdio / mercado'],
-];
-
-export const STATS = [
-  { value: '2.4k', label: 'Pessoas na lista',            color: undefined },
-  { value: '18',   label: 'Conteúdos exclusivos em 2026', color: 'var(--mm-blue)' },
-  { value: '02ª',  label: 'Edição em curso',              color: 'var(--mm-orange)' },
 ];
