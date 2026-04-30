@@ -1,4 +1,4 @@
-import { CHANNELS, SOCIAL, LINKS, ADDRESS, HOURS } from './data';
+import { CHANNELS, SOCIAL, LINKS, ADDRESS } from './data';
 
 export default function Contact() {
   return (
@@ -6,7 +6,7 @@ export default function Contact() {
       <header className="mm-section-head">
         <div className="mm-eyebrow">+ Contato</div>
         <h2 className="mm-section-title">Fale com a MOSTRA<span style={{ color: 'var(--mm-pink)' }}>+</span>.</h2>
-        <p className="mm-section-lead">Três caixas de e-mail, quatro redes sociais, cinco documentos abertos. Respondemos em até 48h úteis.</p>
+        <p className="mm-section-lead">E-mail, Instagram e links diretos para o edital, inscrições e ingressos.</p>
       </header>
 
       <div className="mm-contact-grid">
@@ -60,10 +60,6 @@ export default function Contact() {
         <div>
           <div className="mm-eyebrow">+ Endereço</div>
           <p>{ADDRESS.map((line, i) => <span key={i}>{line}{i < ADDRESS.length - 1 && <br />}</span>)}</p>
-        </div>
-        <div>
-          <div className="mm-eyebrow">+ Atendimento</div>
-          <p>{HOURS.map((line, i) => <span key={i}>{line}{i < HOURS.length - 1 && <br />}</span>)}</p>
         </div>
       </div>
     </section>
