@@ -15,7 +15,7 @@ export default function Contact() {
           <ul className="mm-link-list">
             {CHANNELS.map(c => (
               <li key={c.value}>
-                <a className="mm-link-row" href={c.href}>
+                <a className="mm-link-row" href={c.href} target="_blank" rel="noopener noreferrer">
                   <span className="mm-link-lbl">{c.label}</span>
                   <span className="mm-link-val">{c.value}</span>
                   <span className="mm-link-arrow" aria-hidden>→</span>
@@ -30,7 +30,7 @@ export default function Contact() {
           <ul className="mm-social-grid">
             {SOCIAL.map(s => (
               <li key={s.name}>
-                <a className="mm-social-card" href={s.href} style={{ '--acc': s.color } as React.CSSProperties}>
+                <a className="mm-social-card" href={s.href} target="_blank" rel="noopener noreferrer" style={{ '--acc': s.color } as React.CSSProperties}>
                   <span className="mm-social-name">{s.name}</span>
                   <span className="mm-social-handle">{s.handle}</span>
                   <span className="mm-social-arrow" aria-hidden>↗</span>
