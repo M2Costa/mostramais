@@ -1,4 +1,9 @@
 import Image from 'next/image';
+import { FOOTER_CONTENT } from './data';
+
+function Lines({ lines }: { lines: string[] }) {
+  return <>{lines.map((l, i) => <span key={i}>{l}{i < lines.length - 1 && <br />}</span>)}</>;
+}
 
 export default function Footer() {
   return (
@@ -10,22 +15,22 @@ export default function Footer() {
         <div className="mm-footer-cols">
           <div>
             <div className="mm-eyebrow mm-eyebrow--white">+ Local</div>
-            <p>Escola de Design<br />Av. Antônio Carlos, 6627<br />Pampulha · Belo Horizonte · MG</p>
+            <p><Lines lines={FOOTER_CONTENT.address} /></p>
           </div>
           <div>
             <div className="mm-eyebrow mm-eyebrow--white">+ Contato</div>
-            <p>curadoria@mostramais.edu<br />@mostramais<br />+55 31 0000-0000</p>
+            <p><Lines lines={FOOTER_CONTENT.contact} /></p>
           </div>
           <div>
             <div className="mm-eyebrow mm-eyebrow--white">+ Realização</div>
-            <p>Alunos da Escola de Design<br />Coordenação curatorial 2026<br />Conselho editorial MOSTRA+</p>
+            <p><Lines lines={FOOTER_CONTENT.credits} /></p>
           </div>
         </div>
       </div>
       <div className="mm-footer-rule"></div>
       <div className="mm-footer-bottom">
-        <span>© MOSTRA+ 2026 · Feito por alunos, para alunos.</span>
-        <span>02ª Edição · 27 MAI — 31 MAI</span>
+        <span>{FOOTER_CONTENT.copyright}</span>
+        <span>{FOOTER_CONTENT.edition}</span>
       </div>
     </footer>
   );

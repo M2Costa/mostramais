@@ -2,21 +2,12 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-
-type Route = 'sobre' | 'edicoes' | 'cronograma' | 'faq' | 'contato' | 'mais';
+import { NAV_ITEMS, EDITION_BADGE, type Route } from './data';
 
 interface HeaderProps {
   active: Route;
   onNav: (r: Route) => void;
 }
-
-const NAV_ITEMS: [Route, string][] = [
-  ['edicoes',    'Edições'],
-  ['cronograma', 'Cronograma'],
-  ['faq',        'FAQ'],
-  ['contato',    'Contato'],
-  ['mais',       'Mostra + um pouco'],
-];
 
 export default function Header({ active, onNav }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -43,7 +34,7 @@ export default function Header({ active, onNav }: HeaderProps) {
           ))}
         </nav>
         <div className="mm-header-right">
-          <div className="mm-chip-edition">EDIÇÃO 02 · 2026</div>
+          <div className="mm-chip-edition">{EDITION_BADGE}</div>
           <button
             className="mm-burger"
             aria-label="Menu"

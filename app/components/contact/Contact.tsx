@@ -1,23 +1,4 @@
-const CHANNELS = [
-  { label: 'Curadoria', value: 'curadoria@mostramais.edu', href: 'mailto:curadoria@mostramais.edu' },
-  { label: 'Parcerias', value: 'parcerias@mostramais.edu', href: 'mailto:parcerias@mostramais.edu' },
-  { label: 'Imprensa',  value: 'imprensa@mostramais.edu',  href: 'mailto:imprensa@mostramais.edu' },
-];
-
-const SOCIAL = [
-  { name: 'Instagram', handle: '@mostramais', href: '#', color: 'var(--mm-pink)' },
-  { name: 'Behance',   handle: '/mostramais', href: '#', color: 'var(--mm-blue)' },
-  { name: 'YouTube',   handle: '@mostramais', href: '#', color: 'var(--mm-orange)' },
-  { name: 'TikTok',    handle: '@mostramais', href: '#', color: '#111' },
-];
-
-const LINKS = [
-  { label: 'Edital 2026 (PDF)',          meta: '1.2 MB · 24 páginas', href: '#' },
-  { label: 'Regulamento da curadoria',   meta: '0.4 MB · 8 páginas',  href: '#' },
-  { label: 'Manual de marca MOSTRA+',    meta: '3.1 MB · 8 páginas',  href: '#' },
-  { label: 'Arquivo aberto (CSV)',        meta: '240 projetos · 06 edições', href: '#' },
-  { label: 'Política de acessibilidade', meta: 'Web · Montagem · Publicações', href: '#' },
-];
+import { CHANNELS, SOCIAL, LINKS, ADDRESS, HOURS } from './data';
 
 export default function Contact() {
   return (
@@ -78,11 +59,11 @@ export default function Contact() {
       <div className="mm-contact-addr">
         <div>
           <div className="mm-eyebrow">+ Endereço</div>
-          <p>Escola de Design<br />Av. Antônio Carlos, 6627 · Pampulha<br />Belo Horizonte · MG · 31270-901</p>
+          <p>{ADDRESS.map((line, i) => <span key={i}>{line}{i < ADDRESS.length - 1 && <br />}</span>)}</p>
         </div>
         <div>
           <div className="mm-eyebrow">+ Atendimento</div>
-          <p>Segunda a sexta · 14h00 às 18h00<br />Sala 112 · Bloco B<br />Durante a Mostra: 10h00 às 21h00</p>
+          <p>{HOURS.map((line, i) => <span key={i}>{line}{i < HOURS.length - 1 && <br />}</span>)}</p>
         </div>
       </div>
     </section>

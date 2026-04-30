@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { HERO_CONTENT } from './data';
 
 interface HeroProps {
   onCta: () => void;
@@ -21,19 +22,19 @@ export default function Hero({ onCta, onSchedule }: HeroProps) {
       </div>
       <div className="mm-hero-meta">
         <div>
-          <div className="mm-eyebrow">02ª Edição · Escola de Design</div>
-          <h2 className="mm-hero-sub">Uma ponte entre o universo acadêmico e o mercado.</h2>
+          <div className="mm-eyebrow">{HERO_CONTENT.eyebrow}</div>
+          <h2 className="mm-hero-sub">{HERO_CONTENT.tagline}</h2>
           <div className="mm-hero-cta">
             <button className="mm-btn mm-btn--pink" onClick={onCta}>Ver projetos</button>
             <button className="mm-btn mm-btn--ghost" onClick={onSchedule}>Programação →</button>
           </div>
         </div>
         <div className="mm-hero-dates">
-          <span><b>27</b> MAI</span>
+          <span><b>{HERO_CONTENT.dateStart}</b> {HERO_CONTENT.month}</span>
           <span className="sep">—</span>
-          <span><b>31</b> MAI</span>
+          <span><b>{HERO_CONTENT.dateEnd}</b> {HERO_CONTENT.month}</span>
           <span className="sep">·</span>
-          <span>2026</span>
+          <span>{HERO_CONTENT.year}</span>
         </div>
       </div>
     </section>

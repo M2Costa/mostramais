@@ -1,31 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-
-const GALLERY = [
-  { kind: 'image', title: 'Vernissage ed. 02', sub: 'Galeria Principal · 2026', color: 'var(--mm-pink)', span: 'big' },
-  { kind: 'video', title: 'Making-of montagem', sub: '4:12 · 2025', color: '#111' },
-  { kind: 'image', title: 'Portfolio Night',   sub: 'Foyer · 2025', color: 'var(--mm-blue)' },
-  { kind: 'image', title: 'Workshop tipografia', sub: 'Sala 204 · 2025', color: 'var(--mm-orange)' },
-  { kind: 'image', title: 'Mesa: Design e mercado', sub: 'Auditório B · 2025', color: '#2D155B', span: 'tall' },
-  { kind: 'gif',   title: 'Loop vinheta',       sub: '00:06 · 2025', color: '#E72818' },
-  { kind: 'image', title: 'Prêmio MOSTRA+',     sub: 'Encerramento · 2025', color: 'var(--mm-pink)' },
-  { kind: 'image', title: 'Acervo físico',      sub: 'Sala de arquivo · 2025', color: 'var(--mm-blue)' },
-  { kind: 'video', title: 'Entrevista curatorial', sub: '6:30 · 2025', color: '#111' },
-];
+import { GALLERY, TOPICS, ROLES, STATS } from './data';
 
 const MEDIA_LABELS: Record<string, string> = { image: '⌂ Foto', video: '▶ Vídeo', gif: '∞ GIF' };
 
 type InterestState = { name: string; email: string; role: string; topics: string[] };
 type Status = 'idle' | 'sending' | 'done' | 'error';
-
-const TOPICS = ['Abertura', 'Workshops', 'Portfolio Night', 'Visitas guiadas', 'Livro da edição', 'Curadoria aberta'];
-const ROLES: [string, string][] = [
-  ['aluno', 'Aluno(a)'],
-  ['ex-aluno', 'Ex-aluno(a)'],
-  ['externo', 'Público externo'],
-  ['estudio', 'Estúdio / mercado'],
-];
 
 function InterestForm() {
   const [state, setState] = useState<InterestState>({ name: '', email: '', role: 'aluno', topics: [] });
@@ -137,18 +118,12 @@ export default function MostraMais() {
             <InterestForm />
           </div>
           <aside className="mm-more-side">
-            <div className="mm-more-stat">
-              <div className="mm-more-stat-n">2.4k</div>
-              <div className="mm-more-stat-l">Pessoas na lista</div>
-            </div>
-            <div className="mm-more-stat">
-              <div className="mm-more-stat-n" style={{ color: 'var(--mm-blue)' }}>18</div>
-              <div className="mm-more-stat-l">Conteúdos exclusivos em 2026</div>
-            </div>
-            <div className="mm-more-stat">
-              <div className="mm-more-stat-n" style={{ color: 'var(--mm-orange)' }}>02ª</div>
-              <div className="mm-more-stat-l">Edição em curso</div>
-            </div>
+            {STATS.map(s => (
+              <div key={s.label} className="mm-more-stat">
+                <div className="mm-more-stat-n" style={s.color ? { color: s.color } : undefined}>{s.value}</div>
+                <div className="mm-more-stat-l">{s.label}</div>
+              </div>
+            ))}
           </aside>
         </div>
       </section>

@@ -7,7 +7,6 @@ const AREA_COLORS: Record<string, { accent: string; bg: string }> = {
   'produto':   { accent: '#f9a52b', bg: '#3056a6' },
   'moda':      { accent: '#ed3e8c', bg: '#E72818' },
   'ambientes': { accent: '#3056a6', bg: '#2D155B' },
-  'digital':   { accent: '#ed3e8c', bg: '#3056a6' },
 };
 const DEFAULT_COLORS = { accent: '#ed3e8c', bg: '#111' };
 

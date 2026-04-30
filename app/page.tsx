@@ -1,21 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import Ticker from './components/Ticker';
-import Hero from './components/Hero';
-import Manifesto from './components/Manifesto';
-import About from './components/About';
+import Hero from './components/hero/Hero';
+import Manifesto from './components/manifesto/Manifesto';
+import About from './components/about/About';
 import { EditionsPage, EditionDetail } from './components/editions';
 import { ALL_PROJECTS } from './components/editions/data';
 import type { EditionProject } from './components/editions/data';
-import Faq from './components/Faq';
-import Schedule from './components/Schedule';
-import Contact from './components/Contact';
-import MostraMais from './components/MostraMais';
-import Footer from './components/Footer';
-
-type Route = 'sobre' | 'edicoes' | 'cronograma' | 'faq' | 'contato' | 'mais';
+import Faq from './components/faq/Faq';
+import Schedule from './components/schedule/Schedule';
+import Contact from './components/contact/Contact';
+import MostraMais from './components/mostra-mais/MostraMais';
+import Footer from './components/footer/Footer';
+import type { Route } from './components/header/data';
 
 export default function Home() {
   const [projects, setProjects] = useState<EditionProject[] | null>(null);
