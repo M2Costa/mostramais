@@ -1,34 +1,26 @@
 export const FAQS = [
   {
-    q: 'Quem pode se inscrever na MOSTRA+?',
-    a: 'Qualquer aluno matriculado na Escola de Design em cursos de graduação, tecnólogo ou pós-graduação. Projetos em co-autoria são bem-vindos — basta que pelo menos um dos autores esteja matriculado.',
+    q: 'Me formei na UEMG já tem um tempo. Ainda posso participar?',
+    a: 'Sim! A MOSTRA+ aceita a inscrição de todos os projetos de conclusão de curso da Escola de Design, tanto de alunos como de egressos.',
   },
   {
-    q: 'Posso enviar um projeto de uma disciplina anterior?',
-    a: 'Sim. Aceitamos trabalhos produzidos dentro da escola nos últimos 24 meses, em qualquer disciplina, projeto de extensão, TCC ou pesquisa.',
+    q: 'Posso enviar meu projeto que não é um TCC?',
+    a: 'Infelizmente, não. A Exposição é para divulgar os projetos finais de curso, onde o aluno sintetiza tudo que aprendeu durante sua passagem na universidade.',
   },
   {
-    q: 'Quantos projetos posso submeter?',
-    a: 'Até três projetos por edição, em qualquer combinação de áreas (Gráfico, Produto, Moda, Digital). Cada inscrição é avaliada individualmente.',
+    q: 'Como faço para saber quando as inscrições começam?',
+    a: 'Todas as informações, desde lançamento do edital até divulgação das palestras, serão compartilhadas nesse site e no Instagram oficial @mostramais.ed. Além disso, caso ainda seja aluno ativo, poderá receber e-mails da Assessoria de Comunicação.',
   },
   {
-    q: 'Como funciona a curadoria?',
-    a: 'Um conselho formado por alunos, professores e um curador convidado avalia cada projeto segundo critérios de pesquisa, execução, pertinência e potencial de diálogo com o mercado.',
+    q: 'Meu projeto é interativo e gostaria de aprofundar mais ele. É possível?',
+    a: 'É sim! Para isso, criamos a MOSTRA+ UM POUCO, que serão oficinas, palestras, mesas redondas, sessões comentadas, entre outros, de projetos que podem e querem ser aprofundados, para além do período de exposição.',
   },
   {
-    q: 'Existe algum custo para o aluno?',
-    a: 'Não. Inscrição, curadoria, montagem, catálogo e programação são gratuitos. A Mostra+ é financiada pela escola e pelos parceiros institucionais.',
+    q: 'Quando a MOSTRA+ UM POUCO vai acontecer?',
+    a: 'Ela pode acontecer durante todo o período letivo, exceto na época de exposição. Os dias e horários serão definidos em conjunto ao expositor e, posteriormente, divulgado ao público.',
   },
   {
-    q: 'Meu projeto é 100% digital — como ele é exposto?',
-    a: 'Projetos digitais ocupam a Sala 204, equipada com monitores, tablets e projeção interativa. Você trabalha junto com a equipe de montagem para definir o melhor suporte.',
-  },
-  {
-    q: 'Quando saem os resultados?',
-    a: 'Até 14 dias após o encerramento das inscrições. Você recebe por e-mail, independentemente do resultado, com comentários da curadoria.',
-  },
-  {
-    q: 'E se meu projeto não for selecionado?',
-    a: 'Você pode reinscrevê-lo em edições futuras ou participar da Mostra+Um Pouco — uma seção aberta de curta duração na semana de abertura.',
+    q: 'Quem pode participar da MOSTRA+ UM POUCO e como faço isso?',
+    a: 'Para participar, o aluno ou egresso da Escola de Design precisa preencher o formulário disponível em sua página. Nessa vertente, não é necessário que a pessoa tenha participado da exposição (mas é fortemente recomendado)!',
   },
 ];

@@ -9,16 +9,23 @@ interface HeroProps {
 export default function Hero({ onCta, onSchedule }: HeroProps) {
   return (
     <section className="mm-hero">
-      <div className="mm-hero-stack" style={{ height: '504px' }}>
+      <div className="mm-hero-stack">
         <Image
           className="mm-hero-logo"
           src="/assets/logo_colorida.png"
           alt="MOSTRA+"
           width={450}
           height={504}
-          style={{ width: '450px', height: '504px' }}
           priority
         />
+        <div className="mm-hero-cover">
+          <Image
+            src="/assets/motstramais_fundo.png"
+            alt=""
+            fill
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
       </div>
       <div className="mm-hero-meta">
         <div>

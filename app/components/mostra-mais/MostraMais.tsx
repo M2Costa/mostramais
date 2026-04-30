@@ -15,14 +15,13 @@ export default function MostraMais() {
         <div className="mm-more-grid" style={{ gridTemplateColumns: '1fr' }}>
           <div className="mm-more-form" style={{ display: 'flex', flexDirection: 'column' }}>
             <div className="mm-eyebrow mm-eyebrow--pink">+ Formulário de interesse</div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
+            <div className="mm-more-form-row">
               <h3 className="mm-more-h" style={{ margin: 0 }}>Entre na lista.</h3>
               <a
                 className="mm-btn mm-btn--pink"
                 href={INTEREST_FORM_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ flexShrink: 0 }}
               >
                 Quero participar →
               </a>

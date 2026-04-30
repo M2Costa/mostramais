@@ -1,7 +1,7 @@
 export const FOOTER_CONTENT = {
-  address: ['Escola de Design', 'Av. Antônio Carlos, 6627', 'Pampulha · Belo Horizonte · MG'],
-  contact: ['curadoria@mostramais.edu', '@mostramais', '+55 31 0000-0000'],
-  credits: ['Alunos da Escola de Design', 'Coordenação curatorial 2026', 'Conselho editorial MOSTRA+'],
-  copyright: '© MOSTRA+ 2026 · Feito por alunos, para alunos.',
-  edition: '02ª Edição · 27 MAI — 31 MAI',
+  address: ['Escola de Design | UEMG', 'Rua Gonçalves Dias, 1434 · Lourdes', 'Belo Horizonte · MG'],
+  contact: ['mostramais.ed@gmail.com', '@mostramais.ed'],
+  credits: ['Alunos da Escola de Design da UEMG', 'Diretório Acadêmico · CDE · Circuito Liberdade · Banda Studio'],
+  copyright: '© MOSTRA+ 2026 · De aluno para alunos.',
+  edition: '02ª Edição · 05 MAI — 19 MAI',
 };

@@ -59,7 +59,7 @@ export default function Home() {
       {route === 'sobre' && (
         <main className="mm-main">
           <Hero onCta={() => onNav('edicoes')} onSchedule={() => onNav('cronograma')} />
-          <Ticker color="orange" items={['02ª EDIÇÃO', '28 MAI— 31 MAI', 'ESCOLA DE DESIGN', '42 PROJETOS', 'INSCRIÇÕES FINALIZADAS']} />
+          <Ticker color="orange" items={['02ª EDIÇÃO', '05 MAI — 19 MAI', 'ESCOLA DE DESIGN | UEMG', 'ECED · AUDITÓRIO DA ED', 'INSCRIÇÕES ENCERRADAS']} />
           <About />
           <Manifesto />
         </main>
@@ -72,7 +72,7 @@ export default function Home() {
           ) : (
             <>
               <EditionsPage projects={effectiveProjects} onOpen={openProject} />
-              <Ticker color="pink" items={['ACERVO ABERTO', '06 EDIÇÕES', '240+ PROJETOS', 'GRÁFICO · PRODUTO · MODA · DIGITAL']} />
+              <Ticker color="pink" items={['ACERVO ABERTO', '06 EDIÇÕES', '240+ PROJETOS', 'GRÁFICO · PRODUTO · MODA · AMBIENTES']} />
             </>
           )}
         </main>
@@ -81,14 +81,14 @@ export default function Home() {
       {route === 'cronograma' && (
         <main className="mm-main">
           <Schedule />
-          <Ticker color="blue" items={['EDITAL 02', 'INSCRIÇÕES ATÉ 20/02', 'RESULTADO 08/03', 'ABERTURA 27/05']} />
+          <Ticker color="blue" items={['EDITAL 02', 'INSCRIÇÕES ATÉ 15/03', 'RESULTADO 30/03', 'ABERTURA 05/05']} />
         </main>
       )}
 
       {route === 'faq' && (
         <main className="mm-main">
           <Faq />
-          <Ticker color="orange" items={['AINDA COM DÚVIDAS?', 'ESCREVE PARA CURADORIA@MOSTRAMAIS.EDU', 'RESPOSTA EM 48H', '+']} />
+          <Ticker color="orange" items={['AINDA COM DÚVIDAS?', 'ESCREVE PARA MOSTRAMAIS.ED@GMAIL.COM', 'OU NOS CHAME NO INSTAGRAM', '@MOSTRAMAIS.ED']} />
         </main>
       )}
 

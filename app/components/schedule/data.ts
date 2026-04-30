@@ -34,7 +34,7 @@ export const SCHEDULE: SchedulePhase[] = [
     phase: '03',
     date: '02 FEV – 15 MAR 2026',
     title: 'Inscrições',
-    body: 'Período de submissão de projetos pelo formulário online. Aceitos trabalhos de graduação, tecnólogo e pós-graduação produzidos nos últimos 24 meses.',
+    body: 'Período de submissão de projetos de conclusão de curso pelo formulário online. Aberto a alunos matriculados e egressos da Escola de Design.',
     status: 'done',
     color: 'var(--mm-orange)',
   },

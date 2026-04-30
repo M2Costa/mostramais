@@ -340,13 +340,21 @@ body {
   position: relative;
 }
 .mm-hero-stack {
-  position: relative;
+  display: flex;
+  gap: 0;
+  align-items: stretch;
 }
 .mm-hero-logo {
   display: block;
-  width: clamp(260px, 42vw, 640px);
+  width: clamp(260px, 38vw, 560px);
   height: auto;
-  margin-left: -12px;
+  flex-shrink: 0;
+}
+.mm-hero-cover {
+  position: relative;
+  flex: 1;
+  min-height: 400px;
+  overflow: hidden;
 }
 .mm-hero-meta {
   margin-top: 40px;
@@ -943,9 +951,6 @@ body {
 .mm-faq-item:last-child {
   border-bottom: 1px solid #000;
 }
-.mm-faq-item.open {
-  background: var(--bg-2);
-}
 .mm-faq-q {
   all: unset;
   display: grid;
@@ -1255,7 +1260,7 @@ body {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 10px;
 }
 .mm-social-card {
@@ -1340,6 +1345,17 @@ body {
   background: #fff;
   border: 2px solid #000;
   padding: 36px 40px 40px;
+}
+.mm-more-form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.mm-more-form-row .mm-more-h {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .mm-more-h {
   font-family: var(--font-display);
@@ -2132,6 +2148,16 @@ body {
     padding-left: 20px;
     padding-right: 20px;
   }
+  .mm-hero-stack {
+    flex-direction: column;
+  }
+  .mm-hero-cover {
+    order: -1;
+    min-height: 220px;
+  }
+  .mm-hero-logo {
+    width: clamp(160px, 52vw, 280px);
+  }
   .mm-hero-meta {
     grid-template-columns: 1fr;
   }
@@ -2195,6 +2221,30 @@ body {
   .mm-more-grid {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .mm-more-form-row .mm-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .mm-link-row {
+    grid-template-columns: 1fr 28px;
+    grid-template-rows: auto auto;
+    gap: 4px 12px;
+  }
+  .mm-link-row .mm-link-lbl {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .mm-link-row .mm-link-val {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 18px;
+  }
+  .mm-link-row .mm-link-arrow {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    font-size: 18px;
   }
   .mm-footer-top {
     grid-template-columns: 1fr;
