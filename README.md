@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MOSTRA+
 
-## Getting Started
+Site oficial da MOSTRA+, exposição de projetos de conclusão de curso da Escola de Design | UEMG. A 02ª edição acontece de 05 a 19 de maio de 2026 na ECED e no Auditório da ED, em Belo Horizonte.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 16** (App Router, React 19)
+- **TypeScript**
+- **Google Sheets API v4** — CMS para projetos e edições
+- **Google Drive** — hospedagem de imagens e PDFs dos projetos
+
+## Estrutura
+
+```
+app/
+├── page.tsx                  # SPA router principal
+├── api/projects/route.ts     # Endpoint que lê do Google Sheets
+├── components/
+│   ├── header/               # Navegação
+│   ├── hero/                 # Seção de abertura
+│   ├── about/                # Sobre a mostra e parceiros
+│   ├── manifesto/            # Manifesto
+│   ├── editions/             # Acervo de projetos (EditionsPage + EditionDetail)
+│   ├── schedule/             # Cronograma (9 fases)
+│   ├── faq/                  # Perguntas frequentes
+│   ├── contact/              # Contato, redes e links úteis
+│   ├── mostra-mais/          # Mostra+ um pouco (galeria + formulário)
+│   └── footer/               # Rodapé
+└── globals.css               # Estilos globais (design system)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Cada componente tem um `data.ts` co-localizado com todo o conteúdo textual. Apenas títulos e nomes de botões ficam no JSX.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Rodando localmente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Acesse [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Variáveis de ambiente
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Crie um arquivo `.env.local` na raiz:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+GOOGLE_API_KEY=AIza...
+GOOGLE_SHEETS_ID=<id-da-planilha>
+```
 
-## Deploy on Vercel
+- A chave de API deve ter acesso apenas à **Google Sheets API**
+- A planilha precisa estar compartilhada como **Visualizador (Anyone with the link)**
+- Sem essas variáveis, o site usa os dados estáticos de `data.ts` como fallback
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Google Sheets — estrutura da aba `projects`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Coluna | Campo | Observação |
+|--------|-------|------------|
+| A | `id` | identificador único (número ou slug) |
+| B | `edition` | número da edição (`1`, `2`…) |
+| C | `year` | ano (`2026`) |
+| D | `title` | título do projeto |
+| E | `author` | nome do aluno |
+| F | `area` | `gráfico`, `produto`, `moda`, `ambientes` ou `digital` |
+| G | `tag` | subtítulo curto (ex: `IDENTIDADE VISUAL`) |
+| H | `short` | descrição de uma linha |
+| I | `desc` | descrição completa |
+| J | `advisor` | orientador (opcional) |
+| K | `coverImg` | URL de imagem no Drive (`/file/d/ID/view`) |
+| L–AN | `media_N_*` | até 8 slots de mídia (4 colunas cada) |
+
+**Tipos de mídia:** `image`, `video`, `block`, `pdf`
+
+URLs do Google Drive são normalizadas automaticamente para o formato de thumbnail.
+
+## Deploy
+
+O projeto está configurado para deploy na [Vercel](https://vercel.com). Adicione `GOOGLE_API_KEY` e `GOOGLE_SHEETS_ID` nas variáveis de ambiente do projeto na Vercel.
