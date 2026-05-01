@@ -80,15 +80,21 @@ export default function EditionDetail({ id, onBack, onOpen, projects }: {
           </dl>
         </div>
         <figure className="mm-projeto-hero-media" style={!p.coverImg ? { background: p.bg, minHeight: 360 } : undefined}>
-          {hero.kind === 'block' ? (
+          {!hero ? (
+            <ColorCover title={p.title} accent={p.accent} bg={p.bg} style={{ position: 'relative', aspectRatio: '16/10' }} />
+          ) : hero.kind === 'block' ? (
             <ColorCover title={p.title} accent={p.accent} bg={p.bg} style={{ position: 'relative', aspectRatio: '16/10' }} />
           ) : hero.kind === 'video' ? (
             <VideoMedia src={hero.src} poster={hero.poster} caption={hero.caption} />
+          ) : hero.kind === 'pdf' ? (
+            <a href={hero.src} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '16/10', background: p.bg, color: '#fff', fontFamily: 'var(--font-display)', fontSize: 24, textTransform: 'uppercase', textDecoration: 'none', gap: 12 }}>
+              Ver PDF →
+            </a>
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={hero.src} alt={hero.caption} />
           )}
-          <figcaption>{hero.kind === 'block' ? hero.label : hero.caption}</figcaption>
+          {hero && <figcaption>{hero.kind === 'block' ? hero.label : hero.kind === 'pdf' ? hero.caption : hero.caption}</figcaption>}
         </figure>
       </header>
 
@@ -111,6 +117,10 @@ export default function EditionDetail({ id, onBack, onOpen, projects }: {
                     </div>
                   ) : m.kind === 'video' ? (
                     <VideoMedia src={m.src} poster={m.poster} caption={m.caption} />
+                  ) : m.kind === 'pdf' ? (
+                    <a href={m.src} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '16/10', background: '#111', color: '#fff', fontFamily: 'var(--font-display)', fontSize: 20, textTransform: 'uppercase', textDecoration: 'none' }}>
+                      Ver PDF →
+                    </a>
                   ) : (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={m.src} alt={m.caption} />

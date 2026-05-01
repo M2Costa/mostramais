@@ -59,7 +59,7 @@ export default function Home() {
       {route === 'sobre' && (
         <main className="mm-main">
           <Hero onCta={() => onNav('edicoes')} onSchedule={() => onNav('cronograma')} />
-          <Ticker color="orange" items={['02ª EDIÇÃO', '05 MAI — 19 MAI', 'ESCOLA DE DESIGN | UEMG', 'ECED · AUDITÓRIO DA ED', 'INSCRIÇÕES ENCERRADAS']} />
+          <Ticker color="orange" items={['02ª EDIÇÃO', '05 MAI — 22 MAI', 'ESCOLA DE DESIGN | UEMG', 'ECED · AUDITÓRIO DA ED', 'INSCRIÇÕES ENCERRADAS']} />
           <About />
           <Manifesto />
         </main>

@@ -18,9 +18,19 @@ function driveFileId(url: string): string | null {
   return null;
 }
 
-function driveImageUrl(raw: string): string {
+function driveFolderId(url: string): string | null {
+  const m = url.match(/\/folders\/([a-zA-Z0-9_-]+)/);
+  return m ? m[1] : null;
+}
+
+function isDriveFolder(url: string): boolean {
+  return !!driveFolderId(url);
+}
+
+function driveImageUrl(raw: string): string | null {
+  if (isDriveFolder(raw)) return null; // folders can't be used as images
   const id = driveFileId(raw);
-  return id ? `https://drive.google.com/uc?export=view&id=${id}` : raw;
+  return id ? `https://drive.google.com/thumbnail?id=${id}&sz=w1200` : raw;
 }
 
 function driveVideoEmbedUrl(raw: string): string {
@@ -32,7 +42,7 @@ function isDrive(url: string): boolean {
   return url.includes('drive.google.com');
 }
 
-function normalizeImageUrl(raw: string): string {
+function normalizeImageUrl(raw: string): string | null {
   return isDrive(raw) ? driveImageUrl(raw) : raw;
 }
 
@@ -42,7 +52,7 @@ function normalizeVideoUrl(raw: string): string {
 
 function parseMedia(row: string[]): EditionMedia[] {
   const media: EditionMedia[] = [];
-  const MEDIA_START = 11; // column L (0-indexed)
+  const MEDIA_START = 11;
   const SLOT_WIDTH = 4;
   const MAX_SLOTS = 8;
 
@@ -56,13 +66,19 @@ function parseMedia(row: string[]): EditionMedia[] {
     const caption = (row[base + 3] ?? '').trim();
 
     if (kind === 'image') {
-      media.push({ kind: 'image', src: normalizeImageUrl(src), caption });
+      const normalized = normalizeImageUrl(src);
+      if (normalized) media.push({ kind: 'image', src: normalized, caption });
     } else if (kind === 'video') {
       const entry: EditionMedia = { kind: 'video', src: normalizeVideoUrl(src), caption };
-      if (extra) (entry as { kind: 'video'; src: string; poster?: string; caption: string }).poster = normalizeImageUrl(extra);
+      if (extra) {
+        const poster = normalizeImageUrl(extra);
+        if (poster) (entry as { kind: 'video'; src: string; poster?: string; caption: string }).poster = poster;
+      }
       media.push(entry);
     } else if (kind === 'block') {
       media.push({ kind: 'block', label: caption, color: extra || '#000' });
+    } else if (kind === 'pdf') {
+      media.push({ kind: 'pdf', src, caption });
     }
   }
 
@@ -71,14 +87,14 @@ function parseMedia(row: string[]): EditionMedia[] {
 
 function rowToProject(row: string[]): EditionProject | null {
   const id = (row[0] ?? '').trim();
-  if (!id) return null;
+  const title = (row[3] ?? '').trim();
+  if (!id || !title) return null;
 
   const area   = (row[5] ?? '').trim();
   const colors = AREA_COLORS[area.toLowerCase()] ?? DEFAULT_COLORS;
   const coverRaw = (row[10] ?? '').trim();
+  const coverImg = coverRaw ? normalizeImageUrl(coverRaw) : null;
   const media  = parseMedia(row);
-
-  if (media.length === 0) return null;
 
   return {
     id,
@@ -93,7 +109,7 @@ function rowToProject(row: string[]): EditionProject | null {
     short:    (row[7] ?? '').trim(),
     desc:     (row[8] ?? '').trim(),
     advisor:  (row[9] ?? '').trim() || undefined,
-    coverImg: coverRaw ? normalizeImageUrl(coverRaw) : undefined,
+    ...(coverImg && { coverImg }),
     media,
   };
 }

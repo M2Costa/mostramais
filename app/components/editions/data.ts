@@ -1,7 +1,8 @@
 export type EditionMedia =
   | { kind: 'image'; src: string; caption: string }
   | { kind: 'video'; src: string; poster?: string; caption: string }
-  | { kind: 'block'; label: string; color: string };
+  | { kind: 'block'; label: string; color: string }
+  | { kind: 'pdf'; src: string; caption: string };
 
 export interface EditionProject {
   id: string;
@@ -21,14 +22,11 @@ export interface EditionProject {
 }
 
 export const EDITIONS = [
-  { id: '02', year: '2026' },
-  { id: '06', year: '2025' },
-  { id: '05', year: '2024' },
-  { id: '04', year: '2023' },
-  { id: '03', year: '2022' },
+  { id: '2', year: '2026' },
+  { id: '1', year: '2025' },
 ];
 
-export const DEFAULT_EDITION = '06';
+export const DEFAULT_EDITION = '2';
 
 export const ALL_PROJECTS: EditionProject[] = [
   // ── Edition 02 · 2026 ────────────────────────────────────────────────────

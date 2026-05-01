@@ -72,7 +72,7 @@ export const SCHEDULE: SchedulePhase[] = [
   },
   {
     phase: '08',
-    date: '05 – 19 MAI 2026',
+    date: '05 – 22 MAI 2026',
     title: 'Exposição',
     body: 'A MOSTRA+ abre as portas na ECED e no Auditório da ED. Entrada gratuita para o público em geral durante todo o período.',
     status: 'next',
