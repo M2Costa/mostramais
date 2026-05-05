@@ -872,8 +872,7 @@ body {
 /* Filters */
 .mm-pgrid-filters {
   max-width: 1360px;
-  margin: 0 auto 24px;
-  padding: 24px 48px 0;
+  margin: 24px 0;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -1949,9 +1948,9 @@ body {
 .mm-projeto-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(56px, 7vw, 120px);
+  font-size: clamp(40px, 4vw, 64px);
   text-transform: uppercase;
-  line-height: 0.88;
+  line-height: 1;
   letter-spacing: -0.01em;
   margin: 14px 0 18px;
 }
@@ -2179,8 +2178,7 @@ body {
   }
   .mm-about-body,
   .mm-past-list,
-  .mm-livro-inner,
-  .mm-pgrid-filters {
+  .mm-livro-inner {
     padding-left: 20px;
     padding-right: 20px;
   }

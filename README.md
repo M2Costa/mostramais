@@ -55,20 +55,20 @@ GOOGLE_SHEETS_ID=<id-da-planilha>
 
 ## Google Sheets — estrutura da aba `projects`
 
-| Coluna | Campo | Observação |
-|--------|-------|------------|
-| A | `id` | identificador único (número ou slug) |
-| B | `edition` | número da edição (`1`, `2`…) |
-| C | `year` | ano (`2026`) |
-| D | `title` | título do projeto |
-| E | `author` | nome do aluno |
-| F | `area` | `gráfico`, `produto`, `moda`, `ambientes` ou `digital` |
-| G | `tag` | subtítulo curto (ex: `IDENTIDADE VISUAL`) |
-| H | `short` | descrição de uma linha |
-| I | `desc` | descrição completa |
-| J | `advisor` | orientador (opcional) |
-| K | `coverImg` | URL de imagem no Drive (`/file/d/ID/view`) |
-| L–AN | `media_N_*` | até 8 slots de mídia (4 colunas cada) |
+| Coluna | Campo       | Observação                                  |
+| ------ | ----------- | ------------------------------------------- |
+| A      | `id`        | identificador único (número ou slug)        |
+| B      | `edition`   | número da edição (`1`, `2`…)                |
+| C      | `year`      | ano (`2026`)                                |
+| D      | `title`     | título do projeto                           |
+| E      | `author`    | nome do aluno                               |
+| F      | `area`      | `gráfico`, `produto`, `moda` ou `ambientes` |
+| G      | `tag`       | subtítulo curto (ex: `IDENTIDADE VISUAL`)   |
+| H      | `short`     | descrição de uma linha                      |
+| I      | `desc`      | descrição completa                          |
+| J      | `advisor`   | orientador (opcional)                       |
+| K      | `coverImg`  | URL de imagem no Drive (`/file/d/ID/view`)  |
+| L–AN   | `media_N_*` | até 8 slots de mídia (4 colunas cada)       |
 
 **Tipos de mídia:** `image`, `video`, `block`, `pdf`
 
