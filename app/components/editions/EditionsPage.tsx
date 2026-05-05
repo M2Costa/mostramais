@@ -89,7 +89,7 @@ export default function EditionsPage({ onOpen, projects }: { onOpen: (id: string
         <header className="mm-section-head">
           <div className="mm-eyebrow">+ Edições</div>
           <h2 className="mm-section-title">Tudo o que passou pela MOSTRA<span style={{ color: 'var(--mm-pink)' }}>+</span>.</h2>
-          <p className="mm-section-lead">Seis edições, mais de 240 projetos no acervo. Escolha uma edição e explore os projetos em grade ou lista.</p>
+          <p className="mm-section-lead">Escolha uma edição e explore os projetos em grade ou lista.</p>
         </header>
 
         <div className="mm-projetos-toolbar">
