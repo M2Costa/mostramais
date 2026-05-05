@@ -127,7 +127,7 @@ export default function EditionsPage({ onOpen, projects }: { onOpen: (id: string
         )}
       </section>
 
-      <section className="mm-livro" id="book">
+      {/* <section className="mm-livro" id="book">
         <div className="mm-livro-inner">
           <div className="mm-livro-book" aria-hidden>
             <div className="mm-livro-spine"></div>
@@ -148,7 +148,7 @@ export default function EditionsPage({ onOpen, projects }: { onOpen: (id: string
             <div className="mm-livro-meta">ISBN 978-65-00-00000-0 · Editora Par(ent)êntese · BH, 2025</div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
